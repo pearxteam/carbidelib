@@ -22,6 +22,9 @@ public class MemInfo
         update();
     }
 
+    /**
+     * Updates the cached contents of /proc/meminfo.
+     */
     public void update()
     {
         try
@@ -33,6 +36,11 @@ public class MemInfo
         }
     }
 
+    /**
+     * Gets a value from cached /proc/meminfo.
+     * @param what Value name.
+     * @return Value.
+     */
     public long get(String what)
     {
         Pattern pat = Pattern.compile("^" + what + ":\\s+(\\d+)");
