@@ -3,6 +3,7 @@ package ru.pearx.lib.test;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
+import ru.pearx.lib.PXL;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -43,13 +43,13 @@ public class HashingUtils
      */
     public static String getHash(String name, InputStream str)
     {
-        try(DigestInputStream dig = new DigestInputStream(str, MessageDigest.getInstance(name)))
+        try
         {
-            int num;
-            do
-                num = dig.read();
-            while(num != -1);
-            return PXL.getHexString(dig.getMessageDigest().digest());
+            MessageDigest dig = MessageDigest.getInstance(name);
+            byte[] buffer = new byte[4096];
+            for(int i = str.read(buffer); i > 0; i = str.read(buffer))
+                dig.update(buffer, 0, i);
+            return PXL.getHexString(dig.digest());
         }
         catch (NoSuchAlgorithmException | IOException e)
         {
