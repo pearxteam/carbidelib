@@ -30,7 +30,8 @@ public class MemInfo
         try
         {
             content = Files.readAllLines(Paths.get("/proc/meminfo"));
-        } catch (IOException e)
+        }
+        catch (IOException e)
         {
             e.printStackTrace();
         }
