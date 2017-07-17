@@ -1,6 +1,7 @@
 package ru.pearx.lib;
 
-import com.sun.istack.internal.Nullable;
+
+import javax.annotation.Nullable;
 
 /*
  * Created by mrAppleXZ on 04.07.17 14:43.

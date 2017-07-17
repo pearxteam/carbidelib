@@ -3,3 +3,5 @@ build
 *.ipr
 *.iml
 *.iws
+classes
+.idea
