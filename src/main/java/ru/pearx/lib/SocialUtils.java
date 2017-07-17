@@ -1,14 +1,11 @@
 package ru.pearx.lib;
 
-
-import javax.annotation.Nullable;
-
 /*
  * Created by mrAppleXZ on 04.07.17 14:43.
  */
 public class SocialUtils
 {
-    public static void shareVK(String url, @Nullable String title, @Nullable String description, @Nullable String img_url)
+    public static void shareVK(String url, String title, String description, String img_url)
     {
         StringBuilder sb = new StringBuilder();
         sb.append("https://vk.com/share.php?");
