@@ -92,6 +92,6 @@ public class MathUtils
      */
     public static double roundDouble(double d, int n)
     {
-        return new BigDecimal(d).round(new MathContext(n, RoundingMode.HALF_UP)).doubleValue();
+        return new BigDecimal(d).setScale(n, RoundingMode.HALF_UP).doubleValue();
     }
 }
