@@ -4,6 +4,10 @@ package ru.pearx.lib.math;
  * Created by mrAppleXZ on 03.07.17 22:36.
  */
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+
 /**
  * PearXLib Utils related to mathematics.
  */
@@ -78,5 +82,16 @@ public class MathUtils
             lower = tmp;
         }
         return bigger;
+    }
+
+    /**
+     * Rounds a double to nth digits after point.
+     * @param d Double.
+     * @param n Digits after point.
+     * @return Rounded double.
+     */
+    public static double roundDouble(double d, int n)
+    {
+        return new BigDecimal(d).round(new MathContext(n, RoundingMode.HALF_UP)).doubleValue();
     }
 }
