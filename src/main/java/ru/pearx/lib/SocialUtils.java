@@ -5,6 +5,13 @@ package ru.pearx.lib;
  */
 public class SocialUtils
 {
+    /**
+     * Shares a URL using VK.
+     * @param url URL.
+     * @param title Title. Nullable.
+     * @param description Description. Nullable.
+     * @param img_url Image URL.
+     */
     public static void shareVK(String url, String title, String description, String img_url)
     {
         StringBuilder sb = new StringBuilder();
@@ -19,6 +26,10 @@ public class SocialUtils
         PXL.openUrl(sb.toString());
     }
 
+    /**
+     * Shares a text using Twitter.
+     * @param text Tweet text.
+     */
     public static void tweet(String text)
     {
         PXL.openUrl("https://twitter.com/intent/tweet?text=" + PXL.encodeUrl(text));
