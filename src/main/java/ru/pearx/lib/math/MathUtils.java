@@ -94,4 +94,9 @@ public class MathUtils
     {
         return new BigDecimal(d).setScale(n, RoundingMode.HALF_UP).doubleValue();
     }
+
+    public static float toRadians(float degrees)
+    {
+        return degrees / 180 * 3.141592653589793f;
+    }
 }
