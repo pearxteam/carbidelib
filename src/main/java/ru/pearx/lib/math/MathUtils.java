@@ -6,6 +6,9 @@ package ru.pearx.lib.math;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * PearXLib Utils related to mathematics.
@@ -97,5 +100,39 @@ public class MathUtils
     public static float toRadians(float degrees)
     {
         return degrees / 180 * 3.141592653589793f;
+    }
+
+    public static int calculateXPosition(int width, int mainWidth, String xPos)
+    {
+        if(!xPos.equals("left") && !xPos.equals("center") && !xPos.equals("right"))
+            throw new IllegalArgumentException("xPos may be only 'left', 'center' and 'right'.");
+
+        switch (xPos)
+        {
+            case "left":
+                return 0;
+            case "center":
+                return (mainWidth - width) / 2;
+            case "right":
+                return mainWidth - width;
+        }
+        return -1;
+    }
+
+    public static int calculateYPosition(int height, int mainHeight, String yPos)
+    {
+        if(!yPos.equals("top") && !yPos.equals("middle") && !yPos.equals("bottom"))
+            throw new IllegalArgumentException("yPos may be only 'top', 'middle' and 'bottom'.");
+
+        switch (yPos)
+        {
+            case "top":
+                return 0;
+            case "middle":
+                return (mainHeight - height) / 2;
+            case "bottom":
+                return mainHeight - height;
+        }
+        return -1;
     }
 }
