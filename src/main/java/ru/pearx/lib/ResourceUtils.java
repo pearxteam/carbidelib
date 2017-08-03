@@ -9,14 +9,26 @@ import java.util.Scanner;
 /*
  * Created by mrAppleXZ on 03.08.17 17:23.
  */
+
+/**
+ * The utils that related to resources.
+ */
 public class ResourceUtils
 {
-    public static InputStream getResource(String path) throws IOException
+    /**
+     * Gets a resource stream.
+     * @param path Resource path.
+     */
+    public static InputStream getResource(String path)
     {
         return Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
     }
 
-    public static List<String> getResources(String path) throws IOException
+    /**
+     * Gets all the resource names in the given path.
+     * @param path Resources path.
+     */
+    public static List<String> getResources(String path)
     {
         List<String> lst = new ArrayList<>();
         try (Scanner scan = new Scanner(getResource(path)))
