@@ -1,0 +1,74 @@
+package ru.pearx.lib.i18n;
+
+import ru.pearx.lib.ResourceUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
+/*
+ * Created by mrAppleXZ on 03.08.17 22:07.
+ */
+
+/**
+ * An I18n loader that loads the locales from resources.
+ */
+public class I18nLoaderResources implements II18nLoader
+{
+    private List<String> paths = new ArrayList<>();
+
+    @Override
+    public Properties loadLocale(String locale)
+    {
+        for(String path : paths)
+        {
+            try(InputStream str = ResourceUtils.getResource(path + (path.endsWith("/") ? "" : "/") + locale + ".lang"))
+            {
+                Properties props = new Properties();
+                props.load(str);
+                return props;
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return new Properties();
+    }
+
+    @Override
+    public List<Locale> getAvailableLocales()
+    {
+        List<String> already = new ArrayList<>();
+        List<Locale> lst = new ArrayList<>();
+        for(String path : getPaths())
+        {
+            try(InputStream str = ResourceUtils.getResource(path + (path.endsWith("/") ? "" : "/") + "langs.properties"))
+            {
+                Properties data = new Properties();
+                data.load(str);
+                for(Map.Entry<Object, Object> entr : data.entrySet())
+                {
+                    if(!already.contains(entr.getKey().toString()))
+                    {
+                        lst.add(new Locale(entr.getKey().toString(), entr.getValue().toString()));
+                        already.add(entr.getKey().toString());
+                    }
+                }
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return lst;
+    }
+
+    public List<String> getPaths()
+    {
+        return paths;
+    }
+}
