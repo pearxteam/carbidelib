@@ -29,4 +29,13 @@ public class D
     {
         return getHome().resolve(PcUtils.isWindows() ? "PearX" : ".pearx");
     }
+
+    /**
+     * Gets the working directory.
+     * @return Working directory path.
+     */
+    public static Path getWorkingDir()
+    {
+        return Paths.get(System.getProperty("user.dir"));
+    }
 }

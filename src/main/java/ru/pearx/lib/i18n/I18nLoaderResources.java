@@ -4,6 +4,7 @@ import ru.pearx.lib.ResourceUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -25,10 +26,10 @@ public class I18nLoaderResources implements II18nLoader
     {
         for(String path : paths)
         {
-            try(InputStream str = ResourceUtils.getResource(path + (path.endsWith("/") ? "" : "/") + locale + ".lang"))
+            try(InputStreamReader rdr = new InputStreamReader(ResourceUtils.getResource(path + (path.endsWith("/") ? "" : "/") + locale + ".properties"), "UTF-8"))
             {
                 Properties props = new Properties();
-                props.load(str);
+                props.load(rdr);
                 return props;
             }
             catch (IOException e)
@@ -46,10 +47,10 @@ public class I18nLoaderResources implements II18nLoader
         List<Locale> lst = new ArrayList<>();
         for(String path : getPaths())
         {
-            try(InputStream str = ResourceUtils.getResource(path + (path.endsWith("/") ? "" : "/") + "langs.properties"))
+            try(InputStreamReader rdr = new InputStreamReader(ResourceUtils.getResource(path + (path.endsWith("/") ? "" : "/") + "langs.properties"), "UTF-8"))
             {
                 Properties data = new Properties();
-                data.load(str);
+                data.load(rdr);
                 for(Map.Entry<Object, Object> entr : data.entrySet())
                 {
                     if(!already.contains(entr.getKey().toString()))
