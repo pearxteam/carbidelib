@@ -9,11 +9,10 @@ import java.util.Properties;
 
 /**
  * An I18n from PearXLib.
- * @param <T> I18n loader that will be used with this I18n.
  */
-public class I18n<T extends II18nLoader>
+public class I18n
 {
-    private T loader;
+    private II18nLoader loader;
     private String defaultLocale;
 
     private String currentLocale;
@@ -25,7 +24,7 @@ public class I18n<T extends II18nLoader>
      * @param loader The loader.
      * @param defaultLocale Default locale. It will be used when the loaded locale doesn't contain needed key.
      */
-    public I18n(T loader, String defaultLocale)
+    public I18n(II18nLoader loader, String defaultLocale)
     {
         this.loader = loader;
         setDefaultLocale(defaultLocale);
@@ -79,7 +78,7 @@ public class I18n<T extends II18nLoader>
     /**
      * Gets the I18n loader.
      */
-    public T getLoader()
+    public II18nLoader getLoader()
     {
         return loader;
     }
@@ -100,5 +99,10 @@ public class I18n<T extends II18nLoader>
     public void setDefaultLocale(String defaultLocale)
     {
         this.defaultLocale = defaultLocale;
+    }
+
+    public String getCurrentLocale()
+    {
+        return currentLocale;
     }
 }
