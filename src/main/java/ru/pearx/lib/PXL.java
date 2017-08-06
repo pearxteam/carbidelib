@@ -84,4 +84,9 @@ public class PXL
         }
         return sb.toString();
     }
+
+    public static boolean isNullOrEmpty(String s)
+    {
+        return s == null || s.equals("");
+    }
 }
