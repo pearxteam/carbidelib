@@ -6,9 +6,6 @@ package ru.pearx.lib.math;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * PearXLib Utils related to mathematics.
