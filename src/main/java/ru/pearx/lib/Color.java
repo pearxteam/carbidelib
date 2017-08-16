@@ -14,7 +14,6 @@ public class Color
     private byte blue;
     private byte alpha;
 
-
     /**
      * Creates the new {@link Color} instance.
      * @param red Red value.
