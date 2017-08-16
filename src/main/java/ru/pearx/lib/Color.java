@@ -3,6 +3,10 @@ package ru.pearx.lib;
 /*
  * Created by mrAppleXZ on 16.08.17 19:53.
  */
+
+/**
+ * An ARGB color.
+ */
 public class Color
 {
     private byte red;
@@ -10,6 +14,14 @@ public class Color
     private byte blue;
     private byte alpha;
 
+
+    /**
+     * Creates the new {@link Color} instance.
+     * @param red Red value.
+     * @param green Green value.
+     * @param blue Blue value.
+     * @param alpha Alpha value.
+     */
     public Color(byte red, byte green, byte blue, byte alpha)
     {
         this.red = red;
@@ -18,23 +30,37 @@ public class Color
         this.alpha = alpha;
     }
 
-    public static Color fromRGBA(int rgba)
+
+    /**
+     * Creates the new {@link Color} from ARGB.
+     * @param argb ARGB value.
+     * @return The new {@link Color} instance.
+     */
+    public static Color fromARGB(int argb)
     {
-        byte a = (byte)(rgba >> 24 & 255);
-        byte r = (byte)(rgba >> 16 & 255);
-        byte g = (byte)(rgba >> 8 & 255);
-        byte b = (byte)(rgba & 255);
+        byte a = (byte)(argb >> 24 & 255);
+        byte r = (byte)(argb >> 16 & 255);
+        byte g = (byte)(argb >> 8 & 255);
+        byte b = (byte)(argb & 255);
         return new Color(r, g, b, a);
     }
 
+    /**
+     * Creates the new {@link Color} from RGB.
+     * @param rgb RGB value.
+     * @return The new {@link Color} instance.
+     */
     public static Color fromRGB(int rgb)
     {
-        Color col = Color.fromRGBA(rgb);
+        Color col = Color.fromARGB(rgb);
         col.setAlpha(255);
         return col;
     }
 
-    public int toRGBA()
+    /**
+     * Converts this color to the ARGB int.
+     */
+    public int toARGB()
     {
         int i = 0;
         i |= getAlpha() << 24;
@@ -44,6 +70,9 @@ public class Color
         return i;
     }
 
+    /**
+     * Converts this color to the RGB int.
+     */
     public int toRGB()
     {
         int i = 0;
