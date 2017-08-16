@@ -11,6 +11,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Random PearXLib utils.
@@ -85,8 +90,23 @@ public class PXL
         return sb.toString();
     }
 
+    /**
+     * Checks whether "s" is null or empty string.
+     * @param s Input string.
+     * @return True if "s" is null or empty string, otherwise false.
+     */
     public static boolean isNullOrEmpty(String s)
     {
         return s == null || s.equals("");
+    }
+
+    /**
+     * Converts the HTML to plain text.
+     * @param html HTML string.
+     * @return Plain text.
+     */
+    public static String htmlToPlain(String html)
+    {
+        return html.replace("<br>", "\n").replaceAll("<.*?>", "");
     }
 }
