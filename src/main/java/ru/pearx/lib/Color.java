@@ -34,6 +34,25 @@ public class Color
         return col;
     }
 
+    public int toRGBA()
+    {
+        int i = 0;
+        i |= getAlpha() << 24;
+        i |= getRed() << 16;
+        i |= getGreen() << 8;
+        i |= getBlue();
+        return i;
+    }
+
+    public int toRGB()
+    {
+        int i = 0;
+        i |= getRed() << 16;
+        i |= getGreen() << 8;
+        i |= getBlue();
+        return i;
+    }
+
     public byte getRed()
     {
         return red;
