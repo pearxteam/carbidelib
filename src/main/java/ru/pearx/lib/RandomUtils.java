@@ -73,7 +73,21 @@ public class RandomUtils
      */
     public static Color nextColor(Random rand, int maxR, int maxG, int maxB)
     {
-        return new Color(rand.nextInt(maxR), rand.nextInt(maxG), rand.nextInt(maxB));
+        return Color.fromRGB(rand.nextInt(maxR), rand.nextInt(maxG), rand.nextInt(maxB));
+    }
+
+    /**
+     * Generates a random {@link Color}.
+     * @param rand {@link Random} instance.
+     * @param maxA Max A value (exclusive).
+     * @param maxR Max R value (exclusive).
+     * @param maxG Max G value (exclusive).
+     * @param maxB Max B value (exclusive).
+     * @return A random {@link Color}.
+     */
+    public static Color nextColor(Random rand, int maxA, int maxR, int maxG, int maxB)
+    {
+        return Color.fromARGB(rand.nextInt(maxA), rand.nextInt(maxR), rand.nextInt(maxG), rand.nextInt(maxB));
     }
 
     /**

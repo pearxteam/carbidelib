@@ -11,9 +11,23 @@ public class Color
 {
     private int argb;
 
-    protected Color()
+    public static Color fromRGB(int r, int g, int b)
     {
+        return fromARGB(255, r, g, b);
+    }
 
+    public static Color fromARGB(int a, int r, int g, int b)
+    {
+        if(a > 255 || r > 255 || g > 255 || b > 255)
+            throw new IllegalArgumentException("One of the values is bigger than 255!");
+        if(a < 0 || r < 0 || g < 0 || b < 0)
+            throw new IllegalArgumentException("One of the values is less than 0!");
+        int i = 0;
+        i |= a << 24;
+        i |= r << 16;
+        i |= g << 8;
+        i |= b;
+        return Color.fromARGB(i);
     }
 
     public static Color fromARGB(int argb)
