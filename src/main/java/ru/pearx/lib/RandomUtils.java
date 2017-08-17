@@ -1,6 +1,5 @@
 package ru.pearx.lib;
 
-import java.awt.*;
 import java.util.Random;
 
 /*
