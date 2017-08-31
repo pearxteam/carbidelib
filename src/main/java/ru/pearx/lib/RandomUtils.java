@@ -98,4 +98,15 @@ public class RandomUtils
     {
         return nextColor(rand, 256, 256, 256);
     }
+
+    /**
+     * Generates a random float within specified bounds.
+     * @param min Min value.
+     * @param max Max value.
+     * @param rand {@link Random} instance.
+     */
+    public static float nextFloat(float min, float max, Random rand)
+    {
+        return min + rand.nextFloat() * (max - min);
+    }
 }
