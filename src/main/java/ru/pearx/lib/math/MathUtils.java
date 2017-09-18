@@ -132,4 +132,26 @@ public class MathUtils
         }
         return -1;
     }
+
+    /**
+     * Gets the nearest to 'val' value in 'array'.
+     * @param array An input array.
+     * @param val An input value.
+     * @return Index of the nearest element.
+     */
+    public static int getNearest(int[] array, int val)
+    {
+        int index = 0;
+        int value = Math.abs(array[0] - val);
+        for(int i = 0; i < array.length; i++)
+        {
+            int abs = Math.abs(array[i] - val);
+            if (abs < value)
+            {
+                value = abs;
+                index = i;
+            }
+        }
+        return index;
+    }
 }
