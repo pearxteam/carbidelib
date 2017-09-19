@@ -21,11 +21,11 @@ public class HashingUtils
      * @param bts Byte array.
      * @return A hash.
      */
-    public static String getHash(String name, byte[] bts)
+    public static byte[] getHash(String name, byte[] bts)
     {
         try
         {
-            return PXL.getHexString(MessageDigest.getInstance(name).digest(bts));
+            return MessageDigest.getInstance(name).digest(bts);
         }
         catch (NoSuchAlgorithmException e)
         {
@@ -40,7 +40,7 @@ public class HashingUtils
      * @param str Input Stream.
      * @return A hash.
      */
-    public static String getHash(String name, InputStream str)
+    public static byte[] getHash(String name, InputStream str)
     {
         try
         {
@@ -48,7 +48,7 @@ public class HashingUtils
             byte[] buffer = new byte[4096];
             for(int i = str.read(buffer); i > 0; i = str.read(buffer))
                 dig.update(buffer, 0, i);
-            return PXL.getHexString(dig.digest());
+            return dig.digest();
         }
         catch (NoSuchAlgorithmException | IOException e)
         {
@@ -63,7 +63,7 @@ public class HashingUtils
      * @param text Text that will be converted to UTF-8 byte array.
      * @return A hash.
      */
-    public static String getHash(String name, String text)
+    public static byte[] getHash(String name, String text)
     {
         return getHash(name, text.getBytes(StandardCharsets.UTF_8));
     }
