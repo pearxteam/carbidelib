@@ -109,4 +109,15 @@ public class RandomUtils
     {
         return min + rand.nextFloat() * (max - min);
     }
+
+    /**
+     * Generates a random int within specified bounds.
+     * @param min Min value (inclusive).
+     * @param max Max value (exclusive).
+     * @param rand {@link Random} instance.
+     */
+    public static int nextInt(int min, int max, Random rand)
+    {
+        return rand.nextInt(max - min) + min;
+    }
 }
