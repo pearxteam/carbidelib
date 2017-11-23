@@ -1,5 +1,6 @@
 package ru.pearx.lib.i18n;
 
+import ru.pearx.lib.ResourceContainer;
 import ru.pearx.lib.ResourceUtils;
 
 import java.io.IOException;
@@ -18,14 +19,14 @@ import java.util.Properties;
  */
 public class I18nLoaderResources implements II18nLoader
 {
-    private List<String> paths = new ArrayList<>();
+    private List<ResourceContainer> containers = new ArrayList<>();
 
     @Override
     public Properties loadLocale(String locale)
     {
-        for(String path : paths)
+        for(ResourceContainer cont : getContainers())
         {
-            try(InputStreamReader rdr = new InputStreamReader(ResourceUtils.getResource(path + (path.endsWith("/") ? "" : "/") + locale + ".properties"), "UTF-8"))
+            try(InputStreamReader rdr = new InputStreamReader(cont.getResource(locale + ".properties"), "UTF-8"))
             {
                 Properties props = new Properties();
                 props.load(rdr);
@@ -44,9 +45,9 @@ public class I18nLoaderResources implements II18nLoader
     {
         List<String> already = new ArrayList<>();
         List<Locale> lst = new ArrayList<>();
-        for(String path : getPaths())
+        for(ResourceContainer cont : getContainers())
         {
-            try(InputStreamReader rdr = new InputStreamReader(ResourceUtils.getResource(path + (path.endsWith("/") ? "" : "/") + "langs.properties"), "UTF-8"))
+            try(InputStreamReader rdr = new InputStreamReader(cont.getResource("langs.properties"), "UTF-8"))
             {
                 Properties data = new Properties();
                 data.load(rdr);
@@ -67,8 +68,8 @@ public class I18nLoaderResources implements II18nLoader
         return lst;
     }
 
-    public List<String> getPaths()
+    public List<ResourceContainer> getContainers()
     {
-        return paths;
+        return containers;
     }
 }
