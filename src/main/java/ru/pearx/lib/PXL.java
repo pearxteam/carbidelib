@@ -6,6 +6,8 @@ package ru.pearx.lib;
 
 import java.awt.*;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -105,5 +107,12 @@ public class PXL
     public static boolean isNullOrEmpty(String s)
     {
         return s == null || s.equals("");
+    }
+
+    public static void writeStream(InputStream in, OutputStream out) throws IOException
+    {
+        byte[] buffer = new byte[4096];
+        for(int i = in.read(buffer); i > 0; i = in.read(buffer))
+            out.write(buffer, 0, i);
     }
 }

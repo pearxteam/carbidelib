@@ -1,5 +1,7 @@
 package ru.pearx.lib;
 
+import javafx.util.Pair;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +14,7 @@ public class LiteMimeMap
 
     static
     {
-        map.put("image/bmp:", new String[] {"bmp", "dib"});
+        map.put("image/bmp", new String[] {"bmp", "dib"});
         map.put("image/svg+xml-compressed", new String[] {"svgz"});
         map.put("image/jpeg", new String[] {"jpg", "jpeg", "jpe"});
         map.put("image/wmf", new String[] {"wmf"});
@@ -42,5 +44,19 @@ public class LiteMimeMap
         map.put("image/x-quicktime", new String[] {"qtif", "qif"});
         map.put("image/x-icns", new String[] {"icns"});
         map.put("image/x-xpixmap", new String[] {"xpm"});
+    }
+
+    public static String getMimeForFilename(String name)
+    {
+        for(Map.Entry<String, String[]> entr : map.entrySet())
+        {
+            for(String ext : entr.getValue())
+            {
+                //don't create a new string here.
+                if(name.endsWith(ext) && name.charAt(name.length() - ext.length() - 1) == '.')
+                    return entr.getKey();
+            }
+        }
+        return "application/octet-stream";
     }
 }
