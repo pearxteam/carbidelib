@@ -1,6 +1,7 @@
 package ru.pearx.lib.collections;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /*
@@ -32,5 +33,15 @@ public final class CollectionUtils
             map.put((K)ko, (V)vo);
         }
         return map;
+    }
+
+    public static <K, V> boolean isMapOfListsEmpty(Map<K, List<V>> map)
+    {
+        for(K k : map.keySet())
+        {
+            if(!map.get(k).isEmpty())
+                return false;
+        }
+        return true;
     }
 }

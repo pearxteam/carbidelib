@@ -113,6 +113,8 @@ public class PXL
     {
         byte[] buffer = new byte[4096];
         for(int i = in.read(buffer); i > 0; i = in.read(buffer))
+        {
             out.write(buffer, 0, i);
+        }
     }
 }
