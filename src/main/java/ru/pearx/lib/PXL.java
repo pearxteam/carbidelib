@@ -6,6 +6,8 @@ package ru.pearx.lib;
 
 import java.awt.*;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -20,19 +22,31 @@ public class PXL
     /**
      * Encodes a URL using UTF-8.
      * @param url Decoded URL.
+     * @param spaceAsP20 If true - use "%20" for the space character. If false - use "+" for the space character.
      * @return Encoded URL.
      */
-    public static String encodeUrl(String url)
+    public static String encodeUrl(String url, boolean spaceAsP20)
     {
         try
         {
-            return URLEncoder.encode(url, "UTF-8");
+            String s = URLEncoder.encode(url, "UTF-8");
+            return spaceAsP20 ? s.replace("+", "%20") : s;
         }
         catch (UnsupportedEncodingException e)
         {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * Encodes a URL using UTF-8 and "%20" for spaces.
+     * @param url Decoded URL.
+     * @return Encoded URL.
+     */
+    public static String encodeUrl(String url)
+    {
+        return encodeUrl(url, true);
     }
 
     /**
@@ -95,13 +109,12 @@ public class PXL
         return s == null || s.equals("");
     }
 
-    /**
-     * Converts the HTML to plain text.
-     * @param html HTML string.
-     * @return Plain text.
-     */
-    public static String htmlToPlain(String html)
+    public static void writeStream(InputStream in, OutputStream out) throws IOException
     {
-        return html.replace("<br>", "\n").replaceAll("<.*?>", "");
+        byte[] buffer = new byte[4096];
+        for(int i = in.read(buffer); i > 0; i = in.read(buffer))
+        {
+            out.write(buffer, 0, i);
+        }
     }
 }
