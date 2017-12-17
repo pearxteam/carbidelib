@@ -1,7 +1,6 @@
 package ru.pearx.lib.i18n;
 
 import ru.pearx.lib.ResourceContainer;
-import ru.pearx.lib.ResourceUtils;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
