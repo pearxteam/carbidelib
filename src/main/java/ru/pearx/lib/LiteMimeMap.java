@@ -1,7 +1,5 @@
 package ru.pearx.lib;
 
-import javafx.util.Pair;
-
 import java.util.HashMap;
 import java.util.Map;
 

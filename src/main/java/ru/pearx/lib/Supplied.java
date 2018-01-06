@@ -21,4 +21,9 @@ public class Supplied<T>
             cached = getter.get();
         return cached;
     }
+
+    public void supply()
+    {
+        cached = getter.get();
+    }
 }
