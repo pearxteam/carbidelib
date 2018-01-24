@@ -35,11 +35,18 @@ public final class CollectionUtils
         return map;
     }
 
+    /**
+     * Checks whether the map of lists is empty (every list in the map is empty).
+     * @param map A map.
+     * @param <K> Key type.
+     * @param <V> Value type.
+     * @return True if the map of lists is empty, otherwise - false.
+     */
     public static <K, V> boolean isMapOfListsEmpty(Map<K, List<V>> map)
     {
-        for(K k : map.keySet())
+        for(Map.Entry<K, List<V>> entr : map.entrySet())
         {
-            if(!map.get(k).isEmpty())
+            if(!entr.getValue().isEmpty())
                 return false;
         }
         return true;

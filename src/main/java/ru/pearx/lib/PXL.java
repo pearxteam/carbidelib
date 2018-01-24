@@ -20,7 +20,7 @@ import java.net.URLEncoder;
 public class PXL
 {
     /**
-     * Encodes a URL using UTF-8.
+     * Encodes an URL using UTF-8.
      * @param url Decoded URL.
      * @param spaceAsP20 If true - use "%20" for the space character. If false - use "+" for the space character.
      * @return Encoded URL.
@@ -50,7 +50,7 @@ public class PXL
     }
 
     /**
-     * Decodes a URL using UTF-8
+     * Decodes an URL using UTF-8
      * @param url Encoded URL.
      * @return Decoded URL.
      */
@@ -67,7 +67,7 @@ public class PXL
     }
 
     /**
-     * Opens an URL using default browser.
+     * Opens an URL using the default browser.
      * @param url URL.
      */
     public static void openUrl(String url)
@@ -100,15 +100,21 @@ public class PXL
     }
 
     /**
-     * Checks whether "s" is null or empty string.
+     * Checks whether the "s" is null or an empty string.
      * @param s Input string.
-     * @return True if "s" is null or empty string, otherwise false.
+     * @return True if "s" is null or an empty string, otherwise false.
      */
     public static boolean isNullOrEmpty(String s)
     {
         return s == null || s.equals("");
     }
 
+    /**
+     * Copies the {@link InputStream} "in" into the {@link OutputStream} "out".
+     * @param in Input Stream.
+     * @param out Output Stream.
+     * @throws IOException If an error occurs while working with the streams.
+     */
     public static void writeStream(InputStream in, OutputStream out) throws IOException
     {
         byte[] buffer = new byte[4096];

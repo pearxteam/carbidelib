@@ -11,11 +11,24 @@ public class Color
 {
     private int argb;
 
+    /**
+     * Creates an ARGB color from the RGB integers. Alpha value will be "255".
+     * @param r Red color. 0-255.
+     * @param g Green color. 0-255.
+     * @param b Blue color. 0-255.
+     */
     public static Color fromRGB(int r, int g, int b)
     {
         return fromARGB(255, r, g, b);
     }
 
+    /**
+     * Creates an ARGB color from RGB integers.
+     * @param a Alpha. 0-255
+     * @param r Red color. 0-255
+     * @param g Green color. 0-255
+     * @param b Blue color. 0-255
+     */
     public static Color fromARGB(int a, int r, int g, int b)
     {
         if(a > 255 || r > 255 || g > 255 || b > 255)
@@ -30,6 +43,10 @@ public class Color
         return Color.fromARGB(i);
     }
 
+    /**
+     * Creates an ARGB color from a flattened ARGB integer.
+     * @param argb A flattened ARGB integer.
+     */
     public static Color fromARGB(int argb)
     {
         Color col = new Color();
@@ -37,6 +54,10 @@ public class Color
         return col;
     }
 
+    /**
+     * Creates an ARGB color from a flattened RGB integer. Alpha value will be "255".
+     * @param rgb A flattened RGB or ARGB integer.
+     */
     public static Color fromRGB(int rgb)
     {
         Color col = new Color();
@@ -44,36 +65,57 @@ public class Color
         return col;
     }
 
+    /**
+     * Gets an ARGB value of the color.
+     */
     public int getARGB()
     {
         return argb;
     }
 
+    /**
+     * Sets an ARGB value of the color.
+     */
     public void setARGB(int argb)
     {
         this.argb = argb;
     }
 
+    /**
+     * Sets an RGB value for the color. Alpha will be "255".
+     */
     public void setRGB(int rgb)
     {
         setARGB(rgb | 0xFF000000);
     }
 
+    /**
+     * Gets an alpha value of the color.
+     */
     public int getAlpha()
     {
         return (getARGB() >> 24) & 0xFF;
     }
 
+    /**
+     * Gets a red value of the color.
+     */
     public int getRed()
     {
         return (getARGB() >> 16) & 0xFF;
     }
 
+    /**
+     * Gets a green value of the color.
+     */
     public int getGreen()
     {
         return (getARGB() >> 8) & 0xFF;
     }
 
+    /**
+     * Gets a blue value of the color.
+     */
     public int getBlue()
     {
         return getARGB() & 0xFF;
