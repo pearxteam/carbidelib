@@ -18,12 +18,18 @@ public class ResourceUtils
     /**
      * Gets a resource stream.
      * @param path Resource path.
+     * @param clazz A class whose {@link ClassLoader} will be used to get the resource.
      */
     public static InputStream getResource(String path, Class clazz)
     {
         return clazz.getClassLoader().getResourceAsStream(path);
     }
 
+    /**
+     * Gets an URL of the resource.
+     * @param path Path to the resource.
+     * @param clazz A class whose {@link ClassLoader} will be used to get the resource.
+     */
     public static URL getURL(String path, Class clazz)
     {
         return clazz.getClassLoader().getResource(path);
@@ -32,6 +38,7 @@ public class ResourceUtils
     /**
      * Gets all the resource names in the given path.
      * @param path Resources path.
+     * @param clazz A class whose {@link ClassLoader} will be used to get the resource.
      */
     public static List<String> getResources(String path, Class clazz)
     {

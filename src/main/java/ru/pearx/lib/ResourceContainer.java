@@ -71,6 +71,10 @@ public class ResourceContainer
         return ResourceUtils.getResource(getRoot() + name, getClazz());
     }
 
+    /**
+     * Gets an URL of the resource.
+     * @param path Path to the resource.
+     */
     public URL getURL(String path)
     {
         return ResourceUtils.getURL(getRoot() + path, getClazz());
