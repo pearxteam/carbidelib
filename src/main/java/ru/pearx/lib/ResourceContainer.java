@@ -1,6 +1,7 @@
 package ru.pearx.lib;
 
 import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
 /*
@@ -40,6 +41,11 @@ public class ResourceContainer
     public InputStream getResource(String name)
     {
         return ResourceUtils.getResource(getRoot() + name, getClazz());
+    }
+
+    public URL getURL(String path)
+    {
+        return ResourceUtils.getURL(getRoot() + path, getClazz());
     }
 
     public List<String> getResources(String path)

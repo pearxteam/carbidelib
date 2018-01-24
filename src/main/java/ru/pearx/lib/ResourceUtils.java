@@ -1,6 +1,7 @@
 package ru.pearx.lib;
 
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -21,6 +22,11 @@ public class ResourceUtils
     public static InputStream getResource(String path, Class clazz)
     {
         return clazz.getClassLoader().getResourceAsStream(path);
+    }
+
+    public static URL getURL(String path, Class clazz)
+    {
+        return clazz.getClassLoader().getResource(path);
     }
 
     /**
