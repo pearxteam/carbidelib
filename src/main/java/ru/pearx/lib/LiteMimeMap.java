@@ -6,8 +6,16 @@ import java.util.Map;
 /*
  * Created by mrAppleXZ on 09.08.17 7:22.
  */
+
+//todo make something not ugly as this
+/**
+ * A light MIME types map.
+ */
 public class LiteMimeMap
 {
+    /**
+     * The MIME Type | Extensions map.
+     */
     public static Map<String, String[]> map = new HashMap<>();
 
     static
@@ -44,6 +52,10 @@ public class LiteMimeMap
         map.put("image/x-xpixmap", new String[] {"xpm"});
     }
 
+    /**
+     * Gets a MIME type for the specified filename.
+     * @param name Input filename.
+     */
     public static String getMimeForFilename(String name)
     {
         for(Map.Entry<String, String[]> entr : map.entrySet())

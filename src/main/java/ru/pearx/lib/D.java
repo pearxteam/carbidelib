@@ -8,7 +8,7 @@ import java.nio.file.Paths;
  */
 
 /**
- * Some PearXLib utils related to getting directories paths.
+ * Some PearXLib utils related to getting directories' paths.
  */
 public class D
 {

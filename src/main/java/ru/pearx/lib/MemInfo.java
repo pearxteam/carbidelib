@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  * Created by mrAppleXZ on 03.07.17 13:12.
  */
 /**
- * Wrapper for /proc/meminfo.
+ * Wrapper for /proc/meminfo on Unix-based systems.
  */
 public class MemInfo
 {

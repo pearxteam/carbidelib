@@ -99,6 +99,14 @@ public class MathUtils
         return degrees / 180 * 3.141592653589793f;
     }
 
+
+    //todo integer support.
+    /**
+     * Calculates a X position. May be useful for configs.
+     * @param width Width of an element.
+     * @param mainWidth Width of an element's parent.
+     * @param xPos X position in the string presentation. Allowed values: "left", "center", "right".
+     */
     public static int calculateXPosition(int width, int mainWidth, String xPos)
     {
         if(!xPos.equals("left") && !xPos.equals("center") && !xPos.equals("right"))
@@ -116,6 +124,13 @@ public class MathUtils
         return -1;
     }
 
+    //todo integer support.
+    /**
+     * Calculates an Y position. May be useful for configs.
+     * @param height Height of an element.
+     * @param mainHeight Height of an element's parent.
+     * @param yPos Y position in the string presentation. Allowed values: "top", "middle", "bottom".
+     */
     public static int calculateYPosition(int height, int mainHeight, String yPos)
     {
         if(!yPos.equals("top") && !yPos.equals("middle") && !yPos.equals("bottom"))
