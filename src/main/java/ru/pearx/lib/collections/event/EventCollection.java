@@ -1,4 +1,4 @@
-package ru.pearx.lib.collections;
+package ru.pearx.lib.collections.event;
 
 import java.util.Collection;
 import java.util.Iterator;

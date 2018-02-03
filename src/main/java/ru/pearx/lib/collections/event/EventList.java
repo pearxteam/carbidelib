@@ -1,6 +1,9 @@
-package ru.pearx.lib.collections;
+package ru.pearx.lib.collections.event;
+
+import ru.pearx.lib.Tuple;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 /*
  * Created by mrAppleXZ on 27.09.17 17:23.
@@ -8,17 +11,12 @@ import java.util.*;
 public class EventList<T> implements List<T>
 {
     private List<T> list;
-    private Runnable onModify;
+    private ListEventHandler<T> handler;
 
-    public EventList(List<T> baseList)
+    public EventList(List<T> baseList, ListEventHandler<T> handler)
     {
         this.list = baseList;
-    }
-
-    public EventList(List<T> baseList, Runnable onModify)
-    {
-        this.list = baseList;
-        this.onModify = onModify;
+        this.handler = handler;
     }
 
     @Override
@@ -62,17 +60,20 @@ public class EventList<T> implements List<T>
     {
         boolean ret = list.add(t);
         if(ret)
-            onModify();
+            handler.onAdd(t);
         return ret;
     }
 
     @Override
     public boolean remove(Object o)
     {
-        boolean ret = list.remove(o);
-        if(ret)
-            onModify();
-        return ret;
+        int index = list.indexOf(o);
+        if(index < 0)
+            return false;
+
+        list.remove(index);
+        handler.onRemove(o, index);
+        return true;
     }
 
     @Override
@@ -84,10 +85,20 @@ public class EventList<T> implements List<T>
     @Override
     public boolean addAll(Collection<? extends T> collection)
     {
-        boolean ret = list.addAll(collection);
-        if(ret)
-            onModify();
-        return ret;
+        boolean flag = false;
+        List<T> lst = new ArrayList<>();
+        for(T t : collection)
+        {
+            boolean b = list.add(t);
+            if(b)
+            {
+                flag = true;
+                lst.add(t);
+            }
+        }
+        if(flag)
+            handler.onAdd(lst);
+        return flag;
     }
 
     @Override
@@ -95,33 +106,47 @@ public class EventList<T> implements List<T>
     {
         boolean ret = list.addAll(i, collection);
         if(ret)
-            onModify();
+            handler.onPut(i, collection);
         return ret;
     }
 
     @Override
     public boolean removeAll(Collection<?> collection)
     {
-        boolean ret = list.removeAll(collection);
-        if(ret)
-            onModify();
-        return ret;
+        return rmAll(collection, false);
     }
 
     @Override
     public boolean retainAll(Collection<?> collection)
     {
-        boolean ret = list.retainAll(collection);
-        if(ret)
-            onModify();
-        return ret;
+        return rmAll(collection, true);
     }
+
+    private boolean rmAll(Collection<?> collection, boolean invert)
+    {
+        List<Tuple<T, Integer>> toRemove = new ArrayList<>();
+        for(int i = 0; i < list.size(); i++)
+        {
+            T val = list.get(i);
+            if(collection.contains(val) == !invert)
+            {
+                toRemove.add(new Tuple<>(val, i));
+            }
+        }
+        for(int i = 0; i < toRemove.size(); i++)
+        {
+            list.remove(toRemove.get(i).getRight() - i);
+        }
+        handler.onRemove(toRemove);
+        return !toRemove.isEmpty();
+    }
+
 
     @Override
     public void clear()
     {
         list.clear();
-        onModify();
+        handler.onClear();
     }
 
     @Override
@@ -133,21 +158,23 @@ public class EventList<T> implements List<T>
     @Override
     public T set(int i, T t)
     {
-        return list.set(i, t);
+        T prev = list.set(i, t);
+        handler.onSet(i, prev, t);
+        return prev;
     }
 
     @Override
     public void add(int i, T t)
     {
         list.add(i, t);
-        onModify();
+        handler.onPut(i, t);
     }
 
     @Override
     public T remove(int i)
     {
         T t = list.remove(i);
-        onModify();
+        handler.onRemove(t, i);
         return t;
     }
 
@@ -179,11 +206,5 @@ public class EventList<T> implements List<T>
     public List<T> subList(int i, int i1)
     {
         return list.subList(i, i1);
-    }
-
-    public void onModify()
-    {
-        if(onModify != null)
-            onModify.run();
     }
 }
