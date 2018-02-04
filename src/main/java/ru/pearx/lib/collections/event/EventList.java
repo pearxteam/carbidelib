@@ -3,7 +3,6 @@ package ru.pearx.lib.collections.event;
 import ru.pearx.lib.Tuple;
 
 import java.util.*;
-import java.util.function.Supplier;
 
 /*
  * Created by mrAppleXZ on 27.09.17 17:23.
@@ -71,8 +70,9 @@ public class EventList<T> implements List<T>
         if(index < 0)
             return false;
 
+        T t = list.get(index);
         list.remove(index);
-        handler.onRemove(o, index);
+        handler.onRemove(t, index);
         return true;
     }
 
@@ -203,8 +203,26 @@ public class EventList<T> implements List<T>
     }
 
     @Override
-    public List<T> subList(int i, int i1)
+    public List<T> subList(int fromIndex, int toIndex)
     {
-        return list.subList(i, i1);
+        return list.subList(fromIndex, toIndex);
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        return list.equals(obj);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return list.hashCode();
+    }
+
+    @Override
+    public String toString()
+    {
+        return list.toString();
     }
 }

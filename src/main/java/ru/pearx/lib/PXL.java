@@ -4,6 +4,8 @@ package ru.pearx.lib;
  * Created by mrAppleXZ on 04.07.17 14:48.
  */
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +15,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.StringJoiner;
 
 /**
  * Random PearXLib utils.
@@ -122,5 +125,13 @@ public class PXL
         {
             out.write(buffer, 0, i);
         }
+    }
+
+    public static String joinArray(String delimiter, String prefix, String postFix, String... strings)
+    {
+        StringJoiner j = new StringJoiner(delimiter, prefix, postFix);
+        for(String s : strings)
+            j.add(s);
+        return j.toString();
     }
 }
