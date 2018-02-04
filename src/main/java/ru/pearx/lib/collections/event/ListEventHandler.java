@@ -1,10 +1,8 @@
 package ru.pearx.lib.collections.event;
 
-import com.sun.istack.internal.Nullable;
 import ru.pearx.lib.Tuple;
 
 import java.util.Collection;
-import java.util.List;
 
 /*
  * Created by mrAppleXZ on 03.02.18 18:18.
