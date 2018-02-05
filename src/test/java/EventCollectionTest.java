@@ -1,8 +1,6 @@
 import static org.junit.Assert.*;
 
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 import ru.pearx.lib.Holder;
 import ru.pearx.lib.PXL;
 import ru.pearx.lib.Tuple;
