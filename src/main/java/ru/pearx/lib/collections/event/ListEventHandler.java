@@ -15,6 +15,6 @@ public interface ListEventHandler<T>
     void onRemove(Collection<Tuple<T, Integer>> col);
     void onPut(int index, T t);
     void onPut(int index, Collection<? extends T> t);
-    void onClear();
+    void onClear(Collection<T> col);
     void onSet(int index, T prevValue, T newValue);
 }
