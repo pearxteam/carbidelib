@@ -13,6 +13,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.StringJoiner;
 
 /**
@@ -131,5 +132,13 @@ public class PXL
         for(String s : strings)
             j.add(s);
         return j.toString();
+    }
+
+    public static <T> boolean arrayContains(T[] arr, T val)
+    {
+        for(T t : arr)
+            if(val.equals(t))
+                return true;
+        return false;
     }
 }
