@@ -145,8 +145,9 @@ public class EventList<T> implements List<T>
     @Override
     public void clear()
     {
+        List<T> lst = new ArrayList<>(this);
         list.clear();
-        handler.onClear();
+        handler.onClear(lst);
     }
 
     @Override
