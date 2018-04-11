@@ -13,40 +13,39 @@ import java.util.List;
  */
 public class ResourceContainer
 {
-    private Class clazz;
+    private ClassLoader ldr;
     private String root;
 
     /**
      * Creates a new {@link ResourceContainer} instance with specified
-     * @param clazz A class whose {@link ClassLoader} will be used to get the resources.
+     * @param ldr A {@link ClassLoader} that will be used to get the resources.
      * @param root A root path for the resources.
      */
-    public ResourceContainer(Class clazz, String root)
+    public ResourceContainer(ClassLoader ldr, String root)
     {
-        setClazz(clazz);
+        setClassLoader(ldr);
         setRoot(root);
     }
 
     /**
-     * Gets a class whose {@link ClassLoader} will be used to get the resources.
+     * Gets a {@link ClassLoader} that will be used to get the resources.
      */
-    public Class getClazz()
+    public ClassLoader getClassLoader()
     {
-        return clazz;
+        return ldr;
     }
 
     /**
-     * Sets a class whose {@link ClassLoader} will be used to get the resources.
-     * @param clazz Class.
+     * Sets a {@link ClassLoader} that will be used to get the resources.
+     * @param ldr ClassLoader.
      */
-    public void setClazz(Class clazz)
+    public void setClassLoader(ClassLoader ldr)
     {
-        this.clazz = clazz;
+        this.ldr = ldr;
     }
 
     /**
      * Gets a root path of this {@link ResourceContainer}.
-     * @return
      */
     public String getRoot()
     {
@@ -68,7 +67,7 @@ public class ResourceContainer
      */
     public InputStream getResource(String name)
     {
-        return ResourceUtils.getResource(getRoot() + name, getClazz());
+        return ldr.getResourceAsStream(getRoot() + name);
     }
 
     /**
@@ -77,7 +76,7 @@ public class ResourceContainer
      */
     public URL getURL(String path)
     {
-        return ResourceUtils.getURL(getRoot() + path, getClazz());
+        return ldr.getResource(getRoot() + path);
     }
 
     /**
@@ -86,6 +85,6 @@ public class ResourceContainer
      */
     public List<String> getResources(String path)
     {
-        return ResourceUtils.getResources(getRoot() + path, getClazz());
+        return ResourceUtils.getResources(getRoot() + path, getClassLoader());
     }
 }
