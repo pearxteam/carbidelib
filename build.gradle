@@ -1,5 +1,10 @@
-group 'ru.pearx.lib'
-version '2.0'
+/*
+ * Copyright (c) mrAppleXZ, 2018.
+ * This file is a part of the CarbideLib project and has been published under the GNU Lesser General Public License 3. For further details, see the "LICENSE" file in the project root.
+ */
+
+group 'ru.pearx.carbide'
+version '1.0'
 
 apply plugin: 'java'
 
@@ -14,5 +19,5 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = "4.0.1"
+    gradleVersion = "4.6"
 }
