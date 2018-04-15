@@ -5,6 +5,7 @@
 
 package ru.pearx.carbide;
 
+import javax.swing.*;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -83,6 +84,18 @@ public class StringUtils
         {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public static int parseInt(String s, int def)
+    {
+        try
+        {
+            return Integer.parseInt(s);
+        }
+        catch(NumberFormatException ex)
+        {
+            return def;
         }
     }
 }

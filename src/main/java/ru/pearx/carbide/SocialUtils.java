@@ -21,13 +21,13 @@ public class SocialUtils
     {
         StringBuilder sb = new StringBuilder();
         sb.append("https://vk.com/share.php?");
-        sb.append("url=").append(OtherUtils.encodeUrl(url));
+        sb.append("url=").append(StringUtils.encodeUrl(url));
         if(title != null)
-            sb.append("&title=").append(OtherUtils.encodeUrl(title));
+            sb.append("&title=").append(StringUtils.encodeUrl(title));
         if(description != null)
-            sb.append("&description=").append(OtherUtils.encodeUrl(description));
+            sb.append("&description=").append(StringUtils.encodeUrl(description));
         if(img_url != null)
-            sb.append("&image=").append(OtherUtils.encodeUrl(img_url));
+            sb.append("&image=").append(StringUtils.encodeUrl(img_url));
         OtherUtils.openUrl(sb.toString());
     }
 
@@ -37,6 +37,6 @@ public class SocialUtils
      */
     public static void tweet(String text)
     {
-        OtherUtils.openUrl("https://twitter.com/intent/tweet?text=" + OtherUtils.encodeUrl(text));
+        OtherUtils.openUrl("https://twitter.com/intent/tweet?text=" + StringUtils.encodeUrl(text));
     }
 }

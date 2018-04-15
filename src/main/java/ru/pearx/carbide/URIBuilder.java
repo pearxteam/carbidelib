@@ -46,7 +46,7 @@ public class URIBuilder
             for (String s : q)
             {
                 String[] dat = s.split("=");
-                putQuery(OtherUtils.decodeUrl(dat[0]), OtherUtils.decodeUrl(dat[1]));
+                putQuery(StringUtils.decodeUrl(dat[0]), StringUtils.decodeUrl(dat[1]));
             }
         }
     }
@@ -205,7 +205,7 @@ public class URIBuilder
     @Override
     public String toString()
     {
-        return getScheme() + "://" + getHost() + (getPort() == -1 ? "" : ":" + getPort()) + (getPath().startsWith("/") ? "" : "/") + getPath() + "?" + buildQuery() + (OtherUtils.isNullOrEmpty(getFragment()) ? "" : "#" + getFragment());
+        return getScheme() + "://" + getHost() + (getPort() == -1 ? "" : ":" + getPort()) + (getPath().startsWith("/") ? "" : "/") + getPath() + "?" + buildQuery() + (StringUtils.isNullOrEmpty(getFragment()) ? "" : "#" + getFragment());
     }
 
     /**
@@ -216,9 +216,9 @@ public class URIBuilder
         StringBuilder sb = new StringBuilder();
         for(Map.Entry<String, String> entr : query.entrySet())
         {
-            sb.append(OtherUtils.encodeUrl(entr.getKey()));
+            sb.append(StringUtils.encodeUrl(entr.getKey()));
             sb.append("=");
-            sb.append(OtherUtils.encodeUrl(entr.getValue()));
+            sb.append(StringUtils.encodeUrl(entr.getValue()));
             sb.append("&");
         }
         sb.deleteCharAt(sb.length() - 1);
