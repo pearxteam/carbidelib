@@ -27,16 +27,18 @@ public class OtherUtils
 {
     /**
      * Opens an URL using the default browser.
+     *
      * @param url URL.
      */
     public static void openUrl(String url)
     {
-        if(Desktop.isDesktopSupported())
+        if (Desktop.isDesktopSupported())
         {
             try
             {
                 Desktop.getDesktop().browse(new URI(url));
-            } catch (IOException | URISyntaxException e)
+            }
+            catch (IOException | URISyntaxException e)
             {
                 e.printStackTrace();
             }
@@ -45,14 +47,15 @@ public class OtherUtils
 
     /**
      * Copies the {@link InputStream} "in" into the {@link OutputStream} "out".
-     * @param in Input Stream.
+     *
+     * @param in  Input Stream.
      * @param out Output Stream.
      * @throws IOException If an error occurs while working with the streams.
      */
     public static void writeStream(InputStream in, OutputStream out) throws IOException
     {
         byte[] buffer = new byte[4096];
-        for(int i = in.read(buffer); i > 0; i = in.read(buffer))
+        for (int i = in.read(buffer); i > 0; i = in.read(buffer))
         {
             out.write(buffer, 0, i);
         }
@@ -61,16 +64,21 @@ public class OtherUtils
     public static String joinArray(String delimiter, String prefix, String postFix, String... strings)
     {
         StringJoiner j = new StringJoiner(delimiter, prefix, postFix);
-        for(String s : strings)
+        for (String s : strings)
             j.add(s);
         return j.toString();
     }
 
     public static <T> boolean arrayContains(T[] arr, T val)
     {
-        for(T t : arr)
-            if(val.equals(t))
+        for (T t : arr)
+            if (val.equals(t))
                 return true;
         return false;
+    }
+
+    public static String getCurrentLocale()
+    {
+        return System.getProperty("user.language") + "_" + System.getProperty("user.country");
     }
 }

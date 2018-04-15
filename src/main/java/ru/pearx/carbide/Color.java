@@ -125,4 +125,13 @@ public class Color
     {
         return getARGB() & 0xFF;
     }
+
+    /**
+     * Converts this {@link Color} to the JavaFX {@link javafx.scene.paint.Color}.
+     * @return
+     */
+    public javafx.scene.paint.Color toJavaFX()
+    {
+        return javafx.scene.paint.Color.rgb(getRed(), getGreen(), getBlue(), getAlpha() / 255F);
+    }
 }

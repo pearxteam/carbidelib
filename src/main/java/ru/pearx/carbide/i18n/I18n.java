@@ -5,6 +5,8 @@
 
 package ru.pearx.carbide.i18n;
 
+import ru.pearx.carbide.OtherUtils;
+
 import java.util.List;
 import java.util.Properties;
 
@@ -26,7 +28,8 @@ public class I18n
 
     /**
      * Creates a new {@link I18n} object.
-     * @param loader The loader.
+     *
+     * @param loader        The loader.
      * @param defaultLocale Default locale. It will be used when the loaded locale doesn't contain needed key.
      */
     public I18n(II18nLoader loader, String defaultLocale)
@@ -37,13 +40,14 @@ public class I18n
 
     /**
      * Loads a locale.
+     *
      * @param locale Locale name.
      */
     public void load(String locale)
     {
         currentLocale = locale;
         langMap = loader.loadLocale(locale);
-        if(!locale.equals(getDefaultLocale()))
+        if (!locale.equals(getDefaultLocale()))
             defaultLangMap = loader.loadLocale(getDefaultLocale());
         else
             defaultLangMap = null;
@@ -51,20 +55,22 @@ public class I18n
 
     /**
      * Gets an unformatted translated key from the loaded locale. If the loaded locale doesn't contain needed key, a key will be loaded from the default locale. Even if the default locale doesn't contain needed key, this method will return a key itself.
+     *
      * @param key Translation key.
      */
     public String get(String key)
     {
-        if(langMap != null && langMap.containsKey(key))
+        if (langMap != null && langMap.containsKey(key))
             return langMap.getProperty(key);
-        if(defaultLangMap != null && !currentLocale.equals(getDefaultLocale()) && defaultLangMap.containsKey(key))
+        if (defaultLangMap != null && !currentLocale.equals(getDefaultLocale()) && defaultLangMap.containsKey(key))
             return defaultLangMap.getProperty(key);
         return key;
     }
 
     /**
      * Gets a formatted output of {@link I18n#get(String)} method.
-     * @param key Translation key.
+     *
+     * @param key  Translation key.
      * @param args Arguments for {@link String#format(String, Object...)}
      */
     public String format(String key, Object... args)
@@ -99,6 +105,7 @@ public class I18n
 
     /**
      * Sets the default locale. It will be used when the loaded locale doesn't contain needed key.
+     *
      * @param defaultLocale Default locale name.
      */
     public void setDefaultLocale(String defaultLocale)
@@ -109,5 +116,13 @@ public class I18n
     public String getCurrentLocale()
     {
         return currentLocale;
+    }
+
+    public void loadSystemLocale(boolean lowercase)
+    {
+        String s = OtherUtils.getCurrentLocale();
+        if (lowercase)
+            s = s.toLowerCase();
+        load(s);
     }
 }
