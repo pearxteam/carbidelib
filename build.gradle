@@ -3,21 +3,44 @@
  * This file is a part of the CarbideLib project and has been published under the GNU Lesser General Public License 3. For further details, see the "LICENSE" file in the project root.
  */
 
+allprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testCompile "junit:junit:${junit_ver}"
+        compile "com.google.code.findbugs:jsr305:${jsr305_ver}"
+    }
+}
+
+subprojects {
+    dependencies {
+        compile project(":CarbideLib")
+    }
+}
+
+//CARBIDELIB ITSELF
+
 group 'ru.pearx.carbide'
-version '1.0'
-
-apply plugin: 'java'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testCompile "junit:junit:4.12"
-}
+version carbidelib_ver
 
 task wrapper(type: Wrapper) {
-    gradleVersion = "4.6"
+    gradleVersion = wrapper_ver
+}
+
+//MODULES
+
+project("Jackson") {
+    group 'ru.pearx.carbide.jackson'
+    version carbidelib_jackson_ver
+
+    dependencies {
+        testCompile "com.fasterxml.jackson.core:jackson-databind:${jackson_ver}"
+        compile "com.fasterxml.jackson.core:jackson-annotations:${jackson_ver}"
+    }
 }
