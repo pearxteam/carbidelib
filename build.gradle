@@ -38,12 +38,23 @@ task wrapper(type: Wrapper) {
 
 //MODULES
 
-project("Jackson") {
-    group 'ru.pearx.carbide.jackson'
-    version carbidelib_jackson_ver
+if(findProject("Jackson") != null)
+{
+    project("Jackson") {
+        group 'ru.pearx.carbide.jackson'
+        version carbidelib_jackson_ver
 
-    dependencies {
-        testCompile "com.fasterxml.jackson.core:jackson-databind:${jackson_ver}"
-        compile "com.fasterxml.jackson.core:jackson-databind:${jackson_ver}"
+        dependencies {
+            testCompile "com.fasterxml.jackson.core:jackson-databind:${jackson_ver}"
+            compile "com.fasterxml.jackson.core:jackson-databind:${jackson_ver}"
+        }
+    }
+}
+
+if(findProject("I18n") != null)
+{
+    project("I18n") {
+        group 'ru.pearx.carbide.i18n'
+        version carbidelib_i18n_ver
     }
 }

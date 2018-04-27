@@ -5,10 +5,7 @@
 
 package ru.pearx.carbide.collections.registry;
 
-import com.sun.javafx.UnmodifiableArrayList;
-
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 /*
