@@ -18,10 +18,13 @@ allprojects {
     }
 }
 
+Project carbide = project;
 subprojects {
     dependencies {
-        compile project(":CarbideLib")
+        compile carbide
     }
+
+    archivesBaseName = "CarbideLib-" + archivesBaseName
 }
 
 //CARBIDELIB ITSELF
@@ -41,6 +44,6 @@ project("Jackson") {
 
     dependencies {
         testCompile "com.fasterxml.jackson.core:jackson-databind:${jackson_ver}"
-        compile "com.fasterxml.jackson.core:jackson-annotations:${jackson_ver}"
+        compile "com.fasterxml.jackson.core:jackson-databind:${jackson_ver}"
     }
 }
