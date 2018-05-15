@@ -1,2 +1,3 @@
 include "Jackson"
 include "I18n"
+include "JavaFX"

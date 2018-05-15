@@ -58,3 +58,11 @@ if(findProject("I18n") != null)
         version carbidelib_i18n_ver
     }
 }
+
+if(findProject("JavaFX") != null)
+{
+    project("JavaFX") {
+        group 'ru.pearx.carbide.javafx'
+        version carbidelib_javafx_ver
+    }
+}
