@@ -1,4 +1,4 @@
-package ru.pearx.carbide;
+package ru.pearx.carbide.comparators;
 
 import java.util.Comparator;
 import java.util.regex.Matcher;
@@ -7,13 +7,18 @@ import java.util.regex.Pattern;
 /*
  * Created by mrAppleXZ on 17.05.18 16:24.
  */
-public final class VersionComparator
+public enum VersionComparator implements Comparator<String>
 {
+    INSTANCE;
+
+    public static int compareVersions(String a, String b)
+    {
+        return INSTANCE.compare(a, b);
+    }
+
     private static final Pattern PATTERN = Pattern.compile("(\\d+)|([A-Za-z]+)");
 
-    private VersionComparator() {}
-
-    public static int compare(String a, String b)
+    public int compare(String a, String b)
     {
         if(a.equals(b))
             return 0;
@@ -40,7 +45,7 @@ public final class VersionComparator
                 }
                 else if(aString != null && bString != null)
                 {
-                    result = aString.compareTo(bString);
+                    result = Integer.compare(aString.compareTo(bString), 0);
                 }
                 else
                 {
@@ -51,16 +56,5 @@ public final class VersionComparator
             }
         }
         return 0;
-    }
-
-    public enum Comparator implements java.util.Comparator<String>
-    {
-        INSTANCE;
-
-        @Override
-        public int compare(String o1, String o2)
-        {
-            return VersionComparator.compare(o1, o2);
-        }
     }
 }
