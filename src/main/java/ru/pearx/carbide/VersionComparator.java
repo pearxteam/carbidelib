@@ -1,5 +1,6 @@
 package ru.pearx.carbide;
 
+import java.util.Comparator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,5 +51,14 @@ public final class VersionComparator
             }
         }
         return 0;
+    }
+
+    public static class Comparator implements java.util.Comparator<String>
+    {
+        @Override
+        public int compare(String o1, String o2)
+        {
+            return VersionComparator.compare(o1, o2);
+        }
     }
 }
