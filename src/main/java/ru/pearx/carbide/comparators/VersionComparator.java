@@ -45,7 +45,7 @@ public enum VersionComparator implements Comparator<String>
                 }
                 else if(aString != null && bString != null)
                 {
-                    result = Integer.compare(aString.compareTo(bString), 0);
+                    result = aString.compareToIgnoreCase(bString);
                 }
                 else
                 {
