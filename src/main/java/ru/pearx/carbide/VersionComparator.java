@@ -53,8 +53,10 @@ public final class VersionComparator
         return 0;
     }
 
-    public static class Comparator implements java.util.Comparator<String>
+    public enum Comparator implements java.util.Comparator<String>
     {
+        INSTANCE;
+
         @Override
         public int compare(String o1, String o2)
         {
