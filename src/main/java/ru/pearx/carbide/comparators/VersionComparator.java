@@ -20,40 +20,49 @@ public enum VersionComparator implements Comparator<String>
 
     public int compare(String a, String b)
     {
-        if(a.equals(b))
+        if (a.equals(b))
             return 0;
 
         Matcher matA = PATTERN.matcher(a);
         Matcher matB = PATTERN.matcher(b);
 
-        for(boolean foundA = matA.find(), foundB = matB.find(); foundA || foundB; foundA = matA.find(), foundB = matB.find())
+        for (boolean foundA = matA.find(), foundB = matB.find(); foundA || foundB; foundA = matA.find(), foundB = matB.find())
         {
-            if(foundA && !foundB)
-                return 1;
-            if(!foundA && foundB)
-                return -1;
+            String aNumber = null;
+            String aString = null;
+            String bNumber = null;
+            String bString = null;
+            if (foundA)
+            {
+                aNumber = matA.group(1);
+                aString = matA.group(2);
+            }
+            if (foundB)
+            {
+                bNumber = matB.group(1);
+                bString = matB.group(2);
+            }
+            int result;
+            //both segments are numbers
+            if (aNumber != null && bNumber != null)
+            {
+                result = Integer.compare(Integer.parseInt(aNumber), Integer.parseInt(bNumber));
+            }
+            //both segments are strings
+            else if (aString != null && bString != null)
+            {
+                result = aString.compareToIgnoreCase(bString);
+            }
             else
             {
-                String aNumber = matA.group(1);
-                String aString = matA.group(2);
-                String bNumber = matB.group(1);
-                String bString = matB.group(2);
-                int result;
-                if(aNumber != null && bNumber != null)
-                {
-                    result = Integer.compare(Integer.parseInt(aNumber), Integer.parseInt(bNumber));
-                }
-                else if(aString != null && bString != null)
-                {
-                    result = aString.compareToIgnoreCase(bString);
-                }
+                //<number> <string/none> || <number/none> <string>
+                if(aNumber != null || bString != null)
+                    result = 1;
                 else
-                {
-                    result = aNumber != null ? 1 : -1;
-                }
-                if(result != 0)
-                    return result;
+                    result = -1;
             }
+            if (result != 0)
+                return result;
         }
         return 0;
     }

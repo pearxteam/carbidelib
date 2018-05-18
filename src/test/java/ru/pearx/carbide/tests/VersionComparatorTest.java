@@ -32,5 +32,7 @@ public class VersionComparatorTest
         assertEquals(-1, VersionComparator.compareVersions("1.5.3", "1.5.3.4"));
         assertEquals(1, VersionComparator.compareVersions("1.5.3.1", "1.5.3"));
         assertEquals(1, VersionComparator.compareVersions("1.5.3b", "1.5.3a"));
+        assertEquals(1, VersionComparator.compareVersions("1.2", "1.2-rc4"));
+        assertEquals(-1, VersionComparator.compareVersions("1.2", "1.2.3"));
     }
 }
