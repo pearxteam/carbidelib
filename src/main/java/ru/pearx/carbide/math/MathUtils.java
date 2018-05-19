@@ -15,8 +15,10 @@ import java.math.RoundingMode;
 /**
  * Utils related to mathematics.
  */
-public class MathUtils
+public final class MathUtils
 {
+    private MathUtils(){}
+
     /**
      * Gets an arithmetical average of integers.
      * @param ints Input

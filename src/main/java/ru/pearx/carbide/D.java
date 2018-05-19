@@ -15,8 +15,9 @@ import java.nio.file.Paths;
 /**
  * Some utils related to getting directories' paths.
  */
-public class D
+public final class D
 {
+    private D(){}
     /**
      * Gets the home directory.
      * @return Home directory path.

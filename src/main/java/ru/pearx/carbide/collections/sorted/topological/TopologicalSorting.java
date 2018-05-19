@@ -5,11 +5,6 @@
 
 package ru.pearx.carbide.collections.sorted.topological;
 
-import javafx.util.Pair;
-import ru.pearx.carbide.Tuple;
-
-import javax.management.relation.RelationSupport;
-import java.io.ObjectStreamConstants;
 import java.util.*;
 
 /*

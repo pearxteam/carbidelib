@@ -5,11 +5,8 @@
 
 package ru.pearx.carbide.jackson.tests;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import org.junit.Assert;
 import org.junit.Test;
 import ru.pearx.carbide.DomainedName;
 import ru.pearx.carbide.jackson.ModuleCarbide;

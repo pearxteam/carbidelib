@@ -18,8 +18,10 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Hashing-related utils.
  */
-public class HashingUtils
+public final class HashingUtils
 {
+    private HashingUtils(){}
+
     /**
      * Gets a hash of "bts" using "name" algorithm.
      * @param name Algorithm name.

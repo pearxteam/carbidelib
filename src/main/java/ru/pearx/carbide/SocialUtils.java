@@ -8,8 +8,9 @@ package ru.pearx.carbide;
 /*
  * Created by mrAppleXZ on 04.07.17 14:43.
  */
-public class SocialUtils
+public final class SocialUtils
 {
+    private SocialUtils(){}
     /**
      * Shares a URL using VK.
      * @param url URL.

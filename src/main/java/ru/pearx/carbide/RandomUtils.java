@@ -14,8 +14,10 @@ import java.util.Random;
 /**
  * Utils related to RNG.
  */
-public class RandomUtils
+public final class RandomUtils
 {
+    private RandomUtils(){}
+
     /**
      * Generates a random character in "alphabet".
      * @param rand {@link Random} instance.

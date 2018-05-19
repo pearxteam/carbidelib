@@ -12,8 +12,9 @@ package ru.pearx.carbide;
 /**
  * A class that contain the lists of characters. May be useful for RNG, for instance.
  */
-public class Alphabets
+public final class Alphabets
 {
+    private Alphabets(){}
     /**
      * a-z
      */

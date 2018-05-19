@@ -5,7 +5,6 @@
 
 package ru.pearx.carbide;
 
-import javax.swing.*;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -13,8 +12,10 @@ import java.net.URLEncoder;
 /*
  * Created by mrAppleXZ on 13.04.18 18:19.
  */
-public class StringUtils
+public final class StringUtils
 {
+    private StringUtils(){}
+
     /**
      * Converts a byte array "bts" to a hexadecimal string.
      * @param bts Byte array.

@@ -16,8 +16,10 @@ import java.util.Map;
 /**
  * A light MIME types map.
  */
-public class LiteMimeMap
+public final class LiteMimeMap
 {
+    private LiteMimeMap(){}
+
     /**
      * The MIME Type | Extensions map.
      */

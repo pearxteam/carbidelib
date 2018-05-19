@@ -18,8 +18,10 @@ import java.util.Scanner;
 /**
  * The utils that related to resources.
  */
-public class ResourceUtils
+public final class ResourceUtils
 {
+    private ResourceUtils(){}
+
     /**
      * Gets all the resource names in the given path.
      * @param path Resources path.

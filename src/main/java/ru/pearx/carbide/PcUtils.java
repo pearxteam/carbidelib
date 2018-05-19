@@ -10,8 +10,10 @@ import java.lang.management.ManagementFactory;
 /*
  * Created by mrAppleXZ on 03.07.17 11:52.
  */
-public class PcUtils
+public final class PcUtils
 {
+    private PcUtils(){}
+
     /**
      * Gets the OS name.
      * @return OS name.
