@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) mrAppleXZ, 2018.
+ * This file is a part of the CarbideLib project and has been published under the GNU Lesser General Public License 3. For further details, see the "LICENSE" file in the "CarbideLib" module root directory.
+ */
+
 package ru.pearx.carbide.dependency;
 
 import ru.pearx.carbide.comparators.VersionComparator;
@@ -16,33 +21,39 @@ public class VersionRange
     private String to = null;
     private boolean toInclusive;
 
-    public VersionRange()
+    private VersionRange()
     {
     }
 
     public static VersionRange within(@Nullable String from, boolean fromInclusive, @Nullable String to, boolean toInclusive)
     {
         VersionRange range = new VersionRange();
-        range.setFrom(from);
-        range.setFromInclusive(fromInclusive);
-        range.setTo(to);
-        range.setToInclusive(toInclusive);
+        range.from = from;
+        range.fromInclusive = fromInclusive;
+        range.to = to;
+        range.toInclusive = toInclusive;
         return range;
     }
 
     public static VersionRange from(@Nullable String from, boolean fromInclusive)
     {
         VersionRange range = new VersionRange();
-        range.setFrom(from);
-        range.setFromInclusive(fromInclusive);
+        range.from = from;
+        range.fromInclusive = fromInclusive;
         return range;
     }
 
     public static VersionRange to(@Nullable String to, boolean toInclusive)
     {
         VersionRange range = new VersionRange();
-        range.setTo(to);
-        range.setToInclusive(toInclusive);
+        range.to = to;
+        range.toInclusive = toInclusive;
+        return range;
+    }
+
+    public static VersionRange any()
+    {
+        VersionRange range = new VersionRange();
         return range;
     }
 
@@ -52,20 +63,10 @@ public class VersionRange
         return from;
     }
 
-    public void setFrom(@Nullable String from)
-    {
-        this.from = from;
-    }
-
     @Nullable
     public String getTo()
     {
         return to;
-    }
-
-    public void setTo(@Nullable String to)
-    {
-        this.to = to;
     }
 
     public boolean isFromInclusive()
@@ -73,19 +74,9 @@ public class VersionRange
         return fromInclusive;
     }
 
-    public void setFromInclusive(boolean fromInclusive)
-    {
-        this.fromInclusive = fromInclusive;
-    }
-
     public boolean isToInclusive()
     {
         return toInclusive;
-    }
-
-    public void setToInclusive(boolean toInclusive)
-    {
-        this.toInclusive = toInclusive;
     }
 
     public boolean isVersionWithinRange(String version)
@@ -107,5 +98,26 @@ public class VersionRange
     {
         int comp = VersionComparator.compareVersions(a, b);
         return (!inclusive && comp < 0) || (inclusive && comp <= 0);
+    }
+
+    @Override
+    public String toString()
+    {
+        if(getFrom() == null && getTo() == null)
+            return "any";
+        StringBuilder sb = new StringBuilder();
+        boolean flag = false;
+        if(getFrom() != null)
+        {
+            sb.append("from ").append(getFrom()).append(isFromInclusive() ? " (inclusive)" : "");
+            flag = true;
+        }
+        if(getTo() != null)
+        {
+            if(flag)
+                sb.append(" ");
+            sb.append("to ").append(getTo()).append(isToInclusive() ? " (inclusive)" : "");
+        }
+        return sb.toString();
     }
 }

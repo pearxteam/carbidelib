@@ -1,9 +1,15 @@
+/*
+ * Copyright (c) mrAppleXZ, 2018.
+ * This file is a part of the CarbideLib project and has been published under the GNU Lesser General Public License 3. For further details, see the "LICENSE" file in the "CarbideLib" module root directory.
+ */
+
 package ru.pearx.carbide.collections.sorted.topological;
 
 import javafx.util.Pair;
 import ru.pearx.carbide.Tuple;
 
 import javax.management.relation.RelationSupport;
+import java.io.ObjectStreamConstants;
 import java.util.*;
 
 /*
@@ -82,20 +88,17 @@ public final class TopologicalSorting
         private List<T> objects = new ArrayList<>();
         private Map<T, List<T>> connections = new HashMap<>();
 
-        public Builder<T> addObject(T t)
-        {
-            objects.add(t);
-            return this;
-        }
-
         public Builder<T> setRoot(T root)
         {
+            ensureExists(root);
             this.root = root;
             return this;
         }
 
         public Builder<T> addConnection(T from, T to)
         {
+            ensureExists(from);
+            ensureExists(to);
             List<T> lst = connections.get(from);
             if (lst != null)
                 lst.add(to);
@@ -106,6 +109,12 @@ public final class TopologicalSorting
                 connections.put(from, lst);
             }
             return this;
+        }
+
+        private void ensureExists(T obj)
+        {
+            if(!objects.contains(obj))
+                objects.add(obj);
         }
 
         private Node<T> findNodeFor(List<Node<T>> nodes, T t)

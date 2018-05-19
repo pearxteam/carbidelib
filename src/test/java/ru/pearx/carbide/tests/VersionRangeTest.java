@@ -1,9 +1,13 @@
+/*
+ * Copyright (c) mrAppleXZ, 2018.
+ * This file is a part of the CarbideLib project and has been published under the GNU Lesser General Public License 3. For further details, see the "LICENSE" file in the "CarbideLib" module root directory.
+ */
+
 package ru.pearx.carbide.tests;
 
 import org.junit.Test;
 import ru.pearx.carbide.dependency.VersionRange;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 

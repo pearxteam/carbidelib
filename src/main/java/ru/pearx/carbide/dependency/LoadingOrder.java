@@ -3,11 +3,13 @@
  * This file is a part of the CarbideLib project and has been published under the GNU Lesser General Public License 3. For further details, see the "LICENSE" file in the "CarbideLib" module root directory.
  */
 
-package ru.pearx.carbide.tests;
+package ru.pearx.carbide.dependency;
 
 /*
- * Created by mrAppleXZ on 05.02.18 18:42.
+ * Created by mrAppleXZ on 19.05.18 14:51.
  */
-public class EventCollectionTest
+public enum LoadingOrder
 {
+    BEFORE,
+    AFTER
 }
