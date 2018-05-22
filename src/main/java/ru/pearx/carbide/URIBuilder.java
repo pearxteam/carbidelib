@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * An URI builder.
- * @see <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier"></a>
+ * @see <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">"URI" page on the Wikipedia</a>
  */
 public class URIBuilder
 {
