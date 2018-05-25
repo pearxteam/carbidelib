@@ -10,12 +10,14 @@ package ru.pearx.carbide;
  */
 
 /**
- * Material design colors. See the https://material.io/guidelines/style/color.html.
+ * Material design colors.
+ * @see <a href="https://material.io/guidelines/style/color.html"></a>
  */
 @SuppressWarnings("unused")
 public final class Colors
 {
     private Colors(){}
+
     public static final Color RED_50 = Color.fromRGB(0xFFEBEE);
     public static final Color RED_100 = Color.fromRGB(0xFFCDD2);
     public static final Color RED_200 = Color.fromRGB(0xEF9A9A);

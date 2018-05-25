@@ -28,15 +28,6 @@ public final class D
     }
 
     /**
-     * Gets the PearX directory.
-     * @return getHome()/PearX on Windows, getHome()/.pearx otherwise.
-     */
-    public static Path getPearX()
-    {
-        return getHome().resolve(PcUtils.isWindows() ? "PearX" : ".pearx");
-    }
-
-    /**
      * Gets the working directory.
      * @return Working directory path.
      */

@@ -15,18 +15,22 @@ package ru.pearx.carbide;
 public final class Alphabets
 {
     private Alphabets(){}
+
     /**
      * a-z
      */
     public static final String ENGLISH = "abcdefghijklmnopqrstuvwxyz";
+
     /**
      * A-Z
      */
     public static final String ENGLISH_UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
     /**
      * 0-9
      */
     public static final String DIGITS = "0123456789";
+
     /**
      * !@#$%^&*()_+"№;%:?*()=-.,/\|'
      */
