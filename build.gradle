@@ -32,10 +32,6 @@ subprojects {
 group 'ru.pearx.carbide'
 version carbidelib_ver
 
-task wrapper(type: Wrapper) {
-    gradleVersion = wrapper_ver
-}
-
 //MODULES
 
 if(findProject("Jackson") != null)
