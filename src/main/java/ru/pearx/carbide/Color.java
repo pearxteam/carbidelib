@@ -126,6 +126,26 @@ public class Color
         return getARGB() & 0xFF;
     }
 
+    public float getRedCoefficient()
+    {
+        return getRed() / 255F;
+    }
+
+    public float getGreenCoefficient()
+    {
+        return getGreen() / 255F;
+    }
+
+    public float getBlueCoefficient()
+    {
+        return getBlue() / 255F;
+    }
+
+    public float getAlphaCoefficient()
+    {
+        return getAlpha() / 255F;
+    }
+
     /**
      * Converts this {@link Color} to the JavaFX {@link javafx.scene.paint.Color}.
      * @return
