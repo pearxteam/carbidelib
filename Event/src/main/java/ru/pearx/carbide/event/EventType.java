@@ -11,14 +11,21 @@ package ru.pearx.carbide.event;
 public class EventType<T>
 {
     private Class<T> argsClass;
+    private String id;
 
-    public EventType(Class<T> argsClass)
+    public EventType(String id, Class<T> argsClass)
     {
+        this.id = id;
         this.argsClass = argsClass;
     }
 
     public Class<T> getArgsClass()
     {
         return argsClass;
+    }
+
+    public String getId()
+    {
+        return id;
     }
 }

@@ -62,3 +62,11 @@ if(findProject("JavaFX") != null)
         version carbidelib_javafx_ver
     }
 }
+
+if(findProject("Event") != null)
+{
+    project("Event") {
+        group 'ru.pearx.carbide.event'
+        version carbidelib_event_ver
+    }
+}

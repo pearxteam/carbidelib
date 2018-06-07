@@ -17,7 +17,7 @@ import java.util.Map;
 /*
  * Created by mrAppleXZ on 20.05.18 13:21.
  */
-public class SimpleEventBus implements EventBus
+public class EventBusSimple implements EventBus
 {
     private Map<EventType, List<EventBody>> events = new HashMap<>();
 
