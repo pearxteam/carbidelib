@@ -1,5 +1,9 @@
 package ru.pearx.carbide
 
+/*
+ * Created by mrAppleXZ on 03.07.18 4:55
+ */
+
 const val CHARATERS_ENGLISH = "abcdefghijklmnopqrstuvwxyz"
 const val CHARATERS_ENGLISH_UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 const val CHARATERS_DIGITS = "0123456789"

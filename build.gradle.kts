@@ -1,6 +1,6 @@
 plugins {
-    id("kotlin-gradle-plugin") apply false
     base
+    id("kotlin-gradle-plugin") apply false
 }
 
 subprojects {
@@ -13,5 +13,4 @@ subprojects {
     base {
         archivesBaseName = "carbidelib-$archivesBaseName"
     }
-
 }
