@@ -1,0 +1,32 @@
+stages:   #TODO: move to Docker?
+- build
+- test
+
+before_script:
+- export GRADLE_USER_HOME=`pwd`/.gradle
+
+cache:
+  paths:
+  - .gradle/wrapper
+  - .gradle/caches
+  - platform/*/.gradle
+  - platform/js/node_modules
+
+build:
+  stage: build
+  script:
+  - ./gradlew clean assemble
+  artifacts:
+    paths:
+    - platform/*/build/libs/*
+    expire_in: 1 week
+  only:
+  - master
+
+test:
+  stage: test
+  script:
+  - ./gradlew check
+  - ./gradlew jacocoTestReport
+  - >
+    echo "Test Coverage: $(grep -oP 'Total.*?\K\d{1,3}%' platform/jvm/build/reports/jacoco/test/html/index.html)"

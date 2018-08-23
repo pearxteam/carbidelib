@@ -1,23 +1,38 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val jdk_version: String by project
-val jdk_version_short: String by project
-
 plugins {
     id("kotlin-platform-jvm")
+    id("jacoco")
+}
+
+val junit_jupiter_version: String by project
+val jacoco_version: String by project
+
+configure<JavaPluginConvention> {
+    sourceCompatibility = JavaVersion.VERSION_1_8
 }
 
 dependencies {
-    compile(kotlin("stdlib-jdk$jdk_version_short"))
-    expectedBy(parent!!.project("common"))
+    expectedBy(project(":platform:common"))
+
+    compile(kotlin("stdlib-jdk8"))
+
+    testCompile(kotlin("test-annotations-common"))
+    testCompile(kotlin("test-junit5"))
+    testCompile("org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:$junit_jupiter_version")
+}
+
+jacoco {
+    toolVersion = jacoco_version
 }
 
 tasks {
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = jdk_version
+        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.freeCompilerArgs = listOf("-Xno-param-assertions")
     }
-}
-
-java {
-    sourceCompatibility = JavaVersion.toVersion(jdk_version)
+    named<Test>("test") {
+        useJUnitPlatform()
+    }
 }
