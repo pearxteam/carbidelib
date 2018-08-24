@@ -6,8 +6,8 @@ val kotlin_version: String by settings
 
 pluginManagement {
     repositories {
-        mavenCentral()
         gradlePluginPortal()
+        mavenCentral()
     }
     resolutionStrategy {
         eachPlugin {
